@@ -1,16 +1,20 @@
+# Usamos PHP 8.2 con Apache
 FROM php:8.2-apache
 
-# Instalar extensiones necesarias para MySQL
+# Instalar extensiones para MySQL
 RUN docker-php-ext-install pdo pdo_mysql mysqli
 
-# Habilitar mod_rewrite (útil para MVC)
+# Habilitar mod_rewrite
 RUN a2enmod rewrite
 
-# Copiar archivos del proyecto (opcional si usas volumes)
+# Copiar tu app (opcional si usas volúmenes)
 COPY ./app /var/www/html
 
-# Permisos (para evitar errores)
+# Dar permisos correctos a Apache
 RUN chown -R www-data:www-data /var/www/html
 
-# Puerto por defecto
+# Puerto por defecto de Apache
 EXPOSE 80
+
+# Comando por defecto para Apache
+CMD ["apache2-foreground"]

@@ -1,15 +1,13 @@
 <?php
-require_once "conexion.php";
-
+// Esto reemplaza la conexión real y la consulta SQL
 function obtenerUsuarios() {
-    global $pdo;
-    $stmt = $pdo->query("SELECT * FROM usuarios");
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+    // Datos fake, escritos a mano
+    $usuarios = [
+        ["id" => 1, "nombre" => "Juan Perez", "email" => "juan@mail.com"],
+        ["id" => 2, "nombre" => "Maria Lopez", "email" => "maria@mail.com"],
+        ["id" => 3, "nombre" => "Carlos Ruiz", "email" => "carlos@mail.com"],
+    ];
 
-function insertarUsuario($nombre, $email) {
-    global $pdo;
-    $stmt = $pdo->prepare("INSERT INTO usuarios (nombre, email) VALUES (?, ?)");
-    $stmt->execute([$nombre, $email]);
+    return $usuarios;
 }
 ?>
